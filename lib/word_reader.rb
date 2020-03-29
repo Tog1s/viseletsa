@@ -1,3 +1,4 @@
+# WordReader read words from file or argument of cli
 class WordReader
   def read_from_args
     ARGV[0]

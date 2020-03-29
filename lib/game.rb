@@ -1,4 +1,7 @@
+# класс Games, контроллирует состояние игры
 class Game
+  attr_reader :letters, :good_letters, :bad_letters, :status, :errors
+
   def initialize(slovo)
     @letters = get_letters(slovo)
     @errors = 0
@@ -8,17 +11,17 @@ class Game
   end
 
   def get_letters(slovo)
-    if (slovo == nil || slovo == '')
-      raise "Не удалось получить слово из файла data/word.txt или слово пустое." \
-            "Введите слово через аргумент командной строки"
+    if slovo.nil? || slovo == ''
+      raise 'Не удалось получить слово из файла data/word.txt' \
+            'или слово пустое. Введите слово через аргумент командной строки'
     end
     UnicodeUtils.downcase(slovo).split('')
   end
 
   def ask_next_letter
     puts "\n Введите следующую букву"
-    letter = ""
-    while letter == "" do
+    letter = ''
+    while letter == ''
       letter = STDIN.gets.chomp
       letter = UnicodeUtils.downcase(letter)
     end
@@ -70,25 +73,5 @@ class Game
     if @errors >= 7
       @status = -1
     end
-  end
-
-  def letters
-    @letters
-  end
-
-  def good_letters
-    @good_letters
-  end
-
-  def bad_letters
-    @bad_letters
-  end
-
-  def status
-    @status
-  end
-
-  def errors
-    @errors
   end
 end

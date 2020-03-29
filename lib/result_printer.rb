@@ -5,7 +5,7 @@ class ResultPrinter
     current_path = File.dirname(__FILE__)
     counter = 0
 
-    while counter <= 7 do
+    while counter <= 7
       file_name = current_path + "/../image/#{counter}.txt"
         if File.exist?(file_name)
           f = File.new(file_name, "r:UTF-8")
@@ -28,12 +28,10 @@ class ResultPrinter
     if game.status == -1
       puts "Вы проиграли :("
       puts "Загаданное слово: " + game.letters.join("")
+    elsif game.status == 1
+      puts "Поздравляем! Вы выиграли!"
     else
-      if game.status == 1
-        puts "Поздравляем! Вы выиграли!"
-      else
-        puts "У вас осталось попыток: " + (7-game.errors).to_s
-      end
+      puts "У вас осталось попыток: " + (7-game.errors).to_s
     end
   end
 
